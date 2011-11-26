@@ -19,18 +19,19 @@ else
 	let $MYVIMFILES = $HOME . "/.vim"
 endif
 
-let $BKVIMNOTES = $HOME . "/notes.txt"
-let $BKPROJECT = "../project.txt"
-
-
 helptags $MYVIMFILES/doc
 
 set hidden
 set nocompatible
-set backupdir=$MYVIMFILES/backups
 set scrolljump=1
 set sidescroll=1
 set nowrap
+set backspace=indent,eol,start
+set nobackup
+set autoindent
+set smartindent
+set hlsearch
+set mouse=a
 syntax on
 
 """"GENERAL-PLUGIN""""
@@ -41,10 +42,17 @@ let g:protodefprotogetter = $MYVIMFILES . "/bundle/protodef/pullproto.pl"
 "hack to keep Surround from hijacking visual replace
 xmap <Leader>` <Plug>Vsurround
 
-"unmaps annoying stuff from a.vim
-"iunmap <Leader>ihn
-"iunmap <Leader>is
-"iunmap <Leader>ih
+let g:NERDTreeChDirMode = 2
+
+"sets filetypes for vim-commentary
+autocmd FileType python set commentstring=#\ %s
+autocmd FileType html 	set commentstring=<!--\ %s\ -->
+autocmd FileType lua 	set commentstring=--[[\ %s\ --]]
+autocmd FileType vim 	set commentstring=\"\ %s
+
+"nicer bindings for delimitMate
+imap <S-Space>	<Plug>delimitMateS-Tab
+imap <S-Tab>	<Plug>delimitMateJumpMany
 
 """""INPUT"""""
 """""""""""""""
@@ -57,6 +65,8 @@ nmap <C-L> <C-W>l
 nmap <Leader>t <C-]>
 nmap <Leader>T <C-T>
 
+"modal like <C-W>
+nmap <C-Q>	"+
 
 """"APPEARANCE""""
 """"""""""""""""""
@@ -128,36 +138,5 @@ function s:bufferClose()
 endfunction
 
 
-command Cdf call s:changeDirCurrentFile()
-function s:changeDirCurrentFile()
-	""this should cd to the directory of the current file	
-endfunction
-
-
-""""PLUGIN CONFIG""""
-"""""""""""""""""""""
-""EasyTags""
-""""""""""""
-""let g:project_tags="../tags"
-""let s:project_tags_on=0
-""command ToggleProjectTags call s:toggleProjectTags()
-""function s:toggleProjectTags()
-""	if s:project_tags_on == 0
-""		"let g:easytags_always_enabled = 1 
-""		let &tags=g:project_tags . "," . &tags
-""		let g:easytags_dynamic_files = 1
-""		let s:project_tags_on=1
-""	else
-""		let l:list = split(&tags,',')	
-""		call remove(list,g:project_tags)
-""		let &tags= join(list,',')
-""		let g:easytags_dynamic_files = 0
-""		let s:project_tags_on = 0
-"" 	endif
-""endfunction
-
-""Surround""
-""""""""""""	
-
-
+command Cdf call cd %:p:h
 
