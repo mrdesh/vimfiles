@@ -1,2 +1,7 @@
-let $MYVIMRC= $HOME . "/.vim/vimrc"
+if has("win32")
+	let $MYVIMRC = $USERPROFILE . "\\vimfiles\\vimrc"
+else
+	let $MYVIMRC = $HOME . "/.vim/vimrc"
+endif
+
 source $MYVIMRC
