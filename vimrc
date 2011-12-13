@@ -100,17 +100,28 @@ nmap <C-Q>	"+
 set guifont=Liberation\ Mono\ 12
 
 set background="light"
+set t_Co=256
+let g:solarized_termcolors=256
+let g:solarized_contrast="high"
 
 command Shade call s:toggleColorShade()
 function s:toggleColorShade()
 	if &background == "light"
+<<<<<<< HEAD
 		set background="dark"
 		colorscheme solarized
 		let g:solarized_termcolors=256
 		let g:solarized_contrast="high"
+=======
+		"have to set the background twice, not sure exactly why	
+		set background="dark"
+		colorscheme solarized
+		set background="dark"
+>>>>>>> 0d08b7c446a99484d1491f54bab1a7c2ac20e044
 	else
 		set background="light"	
 		colorscheme default
+		set background="light"	
 	endif
 endfunction
 
@@ -150,7 +161,7 @@ function s:createTags( ... )
 	endif
 
 	echo 'Creating tagfile ' . l:tagfile
-	exe '!ctags' '-f ' . l:tagfile . ' --tag-relative=yes --recurse=yes ./'
+	exe '!ctags' '-f ' . l:tagfile . ' --tag-relative=yes --recurse=yes'
 endfunction
 
 
