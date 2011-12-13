@@ -7,35 +7,62 @@
 "-command to source selection (so i can re-source sections of .vimrc)
 "-command to select line, minus trailing whitespace
 
+
 """"GENERAL""""
-""""""""""""""
-call pathogen#infect()
-call pathogen#helptags()
-
-
+"""""""""""""""
 if has("win32")
 	let $MYVIMFILES = $USERPROFILE . "\\vimfiles"
 else
 	let $MYVIMFILES = $HOME . "/.vim"
 endif
 
+""""VUNDLE""""
+""""""""""""""
+set nocompatible
+filetype off
+
+set rtp+=$MYVIMFILES/bundle/vundle
+call vundle#rc($MYVIMFILES . "/bundle")
+
+Bundle 'gmarik/vundle'
+
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'Raimondi/delimitMate'
+Bundle 'derekwyatt/vim-fswitch'
+Bundle 'tmallen/proj-vim'
+Bundle 'vim-scripts/ProtoDef'
+Bundle 'vim-scripts/UltiSnips'
+Bundle 'vim-scripts/vimwiki'
+Bundle 'vim-scripts/L9'
+Bundle 'vim-scripts/FuzzyFinder'
+Bundle 'tpope/vim-surround'
+Bundle 'majutsushi/tagbar'
+Bundle 'mattn/zencoding-vim'
+
+""""VIM""""
+"""""""""""
 helptags $MYVIMFILES/doc
 
-set hidden
 set nocompatible
+set nobackup
+set hidden
 set scrolljump=1
 set sidescroll=1
-set nowrap
-set backspace=indent,eol,start
-set nobackup
+set ts=4
+set sw=4
 set autoindent
 set smartindent
+set nowrap
+set backspace=indent,eol,start
+set encoding=utf-8
+filetype plugin indent on
 set hlsearch
+set incsearch
 set mouse=a
 syntax on
 
-""""GENERAL-PLUGIN""""
-""""""""""""""""""""""
+""""PLUGIN""""
+""""""""""""""
 "helps protodef find it's perl script (it's still broken though, damnit)
 let g:protodefprotogetter = $MYVIMFILES . "/bundle/protodef/pullproto.pl"
 
@@ -54,8 +81,8 @@ autocmd FileType vim 	set commentstring=\"\ %s
 imap <S-Space>	<Plug>delimitMateS-Tab
 imap <S-Tab>	<Plug>delimitMateJumpMany
 
-"""""INPUT"""""
-"""""""""""""""
+""""INPUT""""
+"""""""""""""
 let mapleader = ' '
 nmap <C-H> <C-W>h
 nmap <C-J> <C-W>j
@@ -65,23 +92,22 @@ nmap <C-L> <C-W>l
 nmap <Leader>t <C-]>
 nmap <Leader>T <C-T>
 
-"modal like <C-W>
+"clipboard mode, works in gvim, doesn't work in some vterms?
 nmap <C-Q>	"+
 
 """"APPEARANCE""""
 """"""""""""""""""
 set guifont=Liberation\ Mono\ 12
 
-
 set background="light"
 
 command Shade call s:toggleColorShade()
 function s:toggleColorShade()
 	if &background == "light"
+		set background="dark"
+		colorscheme solarized
 		let g:solarized_termcolors=256
 		let g:solarized_contrast="high"
-		colorscheme solarized
-		set background="dark"
 	else
 		set background="light"	
 		colorscheme default
@@ -93,7 +119,7 @@ endfunction
 
 
 """"TAGS""""
-"""""""""""""
+""""""""""""
 set tags^=../tags
 
 command UpdateTags call s:updateTags()
