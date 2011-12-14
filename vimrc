@@ -67,7 +67,7 @@ syntax on
 let g:protodefprotogetter = $MYVIMFILES . "/bundle/protodef/pullproto.pl"
 
 "hack to keep Surround from hijacking visual replace
-xmap <Leader>` <Plug>Vsurround
+autocmd VimEnter * xunmap s
 
 let g:NERDTreeChDirMode = 2
 
@@ -77,7 +77,7 @@ autocmd FileType html 	set commentstring=<!--\ %s\ -->
 autocmd FileType lua 	set commentstring=--[[\ %s\ --]]
 autocmd FileType vim 	set commentstring=\"\ %s
 
-"nicer bindings for delimitMate
+"nicer bindings for delimitMate, S-Space doesnt work in vterm?
 imap <S-Space>	<Plug>delimitMateS-Tab
 imap <S-Tab>	<Plug>delimitMateJumpMany
 
@@ -98,35 +98,18 @@ nmap <C-Q>	"+
 """"APPEARANCE""""
 """"""""""""""""""
 set guifont=Liberation\ Mono\ 12
-
-set background="light"
 set t_Co=256
-let g:solarized_termcolors=256
-let g:solarized_contrast="high"
 
-command Shade call s:toggleColorShade()
-function s:toggleColorShade()
-	if &background == "light"
-<<<<<<< HEAD
-		set background="dark"
-		colorscheme solarized
-		let g:solarized_termcolors=256
-		let g:solarized_contrast="high"
-=======
-		"have to set the background twice, not sure exactly why	
-		set background="dark"
-		colorscheme solarized
-		set background="dark"
->>>>>>> 0d08b7c446a99484d1491f54bab1a7c2ac20e044
-	else
-		set background="light"	
-		colorscheme default
-		set background="light"	
-	endif
-endfunction
+""dark
+"colorscheme solarized
+"let g:solarized_termcolors=256
+"let g:solarized_contrast="high"
+"set background="light"
 
-""set background=light
-""colorscheme morning
+""light
+colorscheme default
+set background="light"
+
 
 
 """"TAGS""""
@@ -175,5 +158,5 @@ function s:bufferClose()
 endfunction
 
 
-command Cdf call cd %:p:h
+command Cdf cd %:p:h
 
