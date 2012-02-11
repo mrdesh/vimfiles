@@ -39,6 +39,8 @@ Bundle 'tpope/vim-surround'
 Bundle 'majutsushi/tagbar'
 Bundle 'mattn/zencoding-vim'
 
+filetype plugin indent on
+
 """"VIM""""
 """""""""""
 helptags $MYVIMFILES/doc
