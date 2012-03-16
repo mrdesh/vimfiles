@@ -21,11 +21,11 @@ endif
 set nocompatible
 filetype off
 
-set rtp+=$MYVIMFILES/bundle/vundle
+set rtp+=$MYVIMFILES/vundle
 call vundle#rc($MYVIMFILES . "/bundle")
 
-Bundle 'gmarik/vundle'
-
+Bundle 'fholgado/minibufexpl.vim'
+Bundle 'scrooloose/nerdtree'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'Raimondi/delimitMate'
 Bundle 'derekwyatt/vim-fswitch'
