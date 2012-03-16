@@ -79,9 +79,9 @@ autocmd FileType html 	set commentstring=<!--\ %s\ -->
 autocmd FileType lua 	set commentstring=--[[\ %s\ --]]
 autocmd FileType vim 	set commentstring=\"\ %s
 
-"nicer bindings for delimitMate, S-Space doesnt work in vterm?
-imap <S-Space>	<Plug>delimitMateS-Tab
-imap <S-Tab>	<Plug>delimitMateJumpMany
+"nicer bindings for delimitMate
+imap <Nul> <Plug>delimitMateS-Tab		
+imap <C-g><Space> <Plug>delimitMateJumpMany
 
 """"INPUT""""
 """""""""""""
