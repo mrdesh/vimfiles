@@ -22,6 +22,7 @@ set nocompatible
 filetype off
 
 set rtp+=$MYVIMFILES/vundle
+helptags $MYVIMFILES/vundle/doc
 call vundle#rc($MYVIMFILES . "/bundle")
 
 Bundle 'fholgado/minibufexpl.vim'
@@ -47,6 +48,7 @@ helptags $MYVIMFILES/doc
 
 set nocompatible
 set nobackup
+set noswapfile
 set hidden
 set scrolljump=1
 set sidescroll=1
@@ -56,11 +58,18 @@ set autoindent
 set smartindent
 set nowrap
 set backspace=indent,eol,start
+set nu
+set ruler
+set laststatus=2
+set novisualbell
+set noerrorbells
 set encoding=utf-8
 filetype plugin indent on
 set hlsearch
 set incsearch
+set cf
 set mouse=a
+set mousehide
 syntax on
 
 """"PLUGIN""""
