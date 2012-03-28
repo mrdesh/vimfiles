@@ -39,6 +39,7 @@ Bundle 'vim-scripts/FuzzyFinder'
 Bundle 'tpope/vim-surround'
 Bundle 'majutsushi/tagbar'
 Bundle 'mattn/zencoding-vim'
+Bundle 'michaeljsmith/vim-indent-object' 
 
 filetype plugin indent on
 
@@ -59,6 +60,7 @@ set smartindent
 set nowrap
 set backspace=indent,eol,start
 set nu
+set rnu
 set ruler
 set laststatus=2
 set novisualbell
