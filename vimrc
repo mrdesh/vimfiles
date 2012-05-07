@@ -40,11 +40,13 @@ Bundle 'tpope/vim-surround'
 Bundle 'majutsushi/tagbar'
 Bundle 'mattn/zencoding-vim'
 Bundle 'michaeljsmith/vim-indent-object' 
+Bundle 'vim-scripts/closetag.vim'
 
 filetype plugin indent on
 
 """"VIM""""
 """""""""""
+set rtp+=$MYVIMFILES/personal
 helptags $MYVIMFILES/doc
 
 set nocompatible
@@ -53,13 +55,12 @@ set noswapfile
 set hidden
 set scrolljump=1
 set sidescroll=1
-set ts=4
-set sw=4
+set ts=2
+set sw=2
 set autoindent
 set smartindent
 set nowrap
 set backspace=indent,eol,start
-set nu
 set rnu
 set ruler
 set laststatus=2
@@ -72,6 +73,8 @@ set incsearch
 set cf
 set mouse=a
 set mousehide
+"lets underscore delimit words
+set iskeyword-=_ 
 syntax on
 
 """"PLUGIN""""
@@ -91,8 +94,8 @@ autocmd FileType lua 	set commentstring=--[[\ %s\ --]]
 autocmd FileType vim 	set commentstring=\"\ %s
 
 "nicer bindings for delimitMate
-imap <Nul> <Plug>delimitMateS-Tab		
-imap <C-g><Space> <Plug>delimitMateJumpMany
+"imap <Nul> <Plug>delimitMateS-Tab		
+"imap <C-g><Space> <Plug>delimitMateJumpMany
 
 """"INPUT""""
 """""""""""""
