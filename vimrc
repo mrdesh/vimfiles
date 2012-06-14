@@ -21,7 +21,6 @@ endif
 set nocompatible
 filetype off
 
-set rtp+=$MYVIMFILES/user
 set rtp+=$MYVIMFILES/vundle
 helptags $MYVIMFILES/vundle/doc
 call vundle#rc($MYVIMFILES . "/bundle")
@@ -77,6 +76,7 @@ set mousehide
 set iskeyword-=_
 syntax on
 
+
 """"PLUGIN""""
 """"""""""""""
 "helps protodef find it's perl script (it's still broken though, damnit)
@@ -123,8 +123,11 @@ set t_Co=256
 "set background="light"
 
 ""light
-colorscheme default
-set background="light"
+"colorscheme default
+"set background="light"
+
+""whatevs, no more solarized
+colorscheme zenburn
 
 
 

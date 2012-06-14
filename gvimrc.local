@@ -1,7 +1,0 @@
-if has("win32")
-	let $MYGVIMRC = $USERPROFILE . "\\vimfiles\\gvimrc"
-else
-	let $MYGVIMRC = $HOME . "/.vim/gvimrc"
-endif
-
-source $MYGVIMRC
