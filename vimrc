@@ -21,6 +21,7 @@ endif
 set nocompatible
 filetype off
 
+set rtp+=$MYVIMFILES/user
 set rtp+=$MYVIMFILES/vundle
 helptags $MYVIMFILES/vundle/doc
 call vundle#rc($MYVIMFILES . "/bundle")
@@ -41,11 +42,13 @@ Bundle 'majutsushi/tagbar'
 Bundle 'mattn/zencoding-vim'
 Bundle 'michaeljsmith/vim-indent-object' 
 Bundle 'godlygeek/tabular' 
+Bundle 'vim-scripts/closetag.vim'
 
 filetype plugin indent on
 
 """"VIM""""
 """""""""""
+set rtp+=$MYVIMFILES/personal
 helptags $MYVIMFILES/doc
 
 set nocompatible
@@ -60,7 +63,6 @@ set autoindent
 set smartindent
 set nowrap
 set backspace=indent,eol,start
-set nu
 set rnu
 set ruler
 set laststatus=2
@@ -73,7 +75,7 @@ set incsearch
 set cf
 set mouse=a
 set mousehide
-set iskeyword-=_
+set iskeyword-=_ 
 syntax on
 
 
