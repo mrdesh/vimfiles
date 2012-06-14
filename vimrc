@@ -21,6 +21,7 @@ endif
 set nocompatible
 filetype off
 
+set rtp+=$MYVIMFILES/user
 set rtp+=$MYVIMFILES/vundle
 helptags $MYVIMFILES/vundle/doc
 call vundle#rc($MYVIMFILES . "/bundle")
@@ -40,6 +41,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'majutsushi/tagbar'
 Bundle 'mattn/zencoding-vim'
 Bundle 'michaeljsmith/vim-indent-object' 
+Bundle 'godlygeek/tabular' 
 
 filetype plugin indent on
 
@@ -53,8 +55,8 @@ set noswapfile
 set hidden
 set scrolljump=1
 set sidescroll=1
-set ts=4
-set sw=4
+set ts=2
+set sw=2
 set autoindent
 set smartindent
 set nowrap
@@ -72,6 +74,7 @@ set incsearch
 set cf
 set mouse=a
 set mousehide
+set iskeyword-=_
 syntax on
 
 """"PLUGIN""""
@@ -91,8 +94,8 @@ autocmd FileType lua 	set commentstring=--[[\ %s\ --]]
 autocmd FileType vim 	set commentstring=\"\ %s
 
 "nicer bindings for delimitMate
-imap <Nul> <Plug>delimitMateS-Tab		
-imap <C-g><Space> <Plug>delimitMateJumpMany
+"imap <Nul> <Plug>delimitMateS-Tab		
+"imap <C-g><Space> <Plug>delimitMateJumpMany
 
 """"INPUT""""
 """""""""""""
