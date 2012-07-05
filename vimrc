@@ -26,25 +26,52 @@ set rtp+=$MYVIMFILES/vundle
 helptags $MYVIMFILES/vundle/doc
 call vundle#rc($MYVIMFILES . "/bundle")
 
+" Tools
 Bundle 'fholgado/minibufexpl.vim'
 Bundle 'scrooloose/nerdtree'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'Raimondi/delimitMate'
-Bundle 'derekwyatt/vim-fswitch'
-Bundle 'tmallen/proj-vim'
-Bundle 'vim-scripts/ProtoDef'
-Bundle 'vim-scripts/UltiSnips'
-Bundle 'vim-scripts/vimwiki'
-Bundle 'vim-scripts/L9'
-Bundle 'vim-scripts/FuzzyFinder'
-Bundle 'tpope/vim-surround'
 Bundle 'majutsushi/tagbar'
-Bundle 'mattn/zencoding-vim'
+Bundle 'Lokaltog/vim-powerline'
+"Bundle 'vim-scripts/FuzzyFinder'
+Bundle 'kien/ctrlp.vim'
+"Bundle 'Shougo/neocomplcache'
+"Bundle 'vim-scripts/Sessionman'
+"Bundle 'fmoralesc/vim-pad'
+"Bundle 'kshenoy/vim-signature'
+
+" Project management / GTD
+Bundle 'tmallen/proj-vim'
+Bundle 'aaronbieber/quicktask'
+Bundle 'vim-scripts/vimwiki'
+Bundle 'jceb/vim-orgmode'
+Bundle 'vim-scripts/vimprj'
+
+" Auto text
+Bundle 'vim-scripts/UltiSnips'
+Bundle 'tpope/vim-surround'
+Bundle 'godlygeek/tabular' 								
+Bundle 'Raimondi/delimitMate'
+Bundle 'vim-scripts/ProtoDef'
 Bundle 'michaeljsmith/vim-indent-object' 
-Bundle 'godlygeek/tabular' 
+"Bundle 'ervandu/supertab' 
+Bundle 'tomtom/tcomment_vim'
+
+" Markup/HTML/CSS
+Bundle 'mattn/zencoding-vim'
 Bundle 'vim-scripts/closetag.vim'
 
+" Colors
+Bundle 'altercation/vim-colors-solarized'
+
+" Dependencies
+Bundle 'vim-scripts/L9'
+Bundle 'vim-scripts/DfrankUtil'
+
+" For the record
+"https://github.com/gmarik/vundle
+"https://github.com/tpope/vim-pathogen
+
 filetype plugin indent on
+
 
 """"VIM""""
 """""""""""
@@ -84,16 +111,20 @@ syntax on
 "helps protodef find it's perl script (it's still broken though, damnit)
 let g:protodefprotogetter = $MYVIMFILES . "/bundle/protodef/pullproto.pl"
 
-"hack to keep Surround from hijacking visual replace
-autocmd VimEnter * xunmap s
-
 let g:NERDTreeChDirMode = 2
+let g:NERDTreeWinSize = 22
 
-"sets filetypes for vim-commentary
-autocmd FileType python set commentstring=#\ %s
-autocmd FileType html 	set commentstring=<!--\ %s\ -->
-autocmd FileType lua 	set commentstring=--[[\ %s\ --]]
-autocmd FileType vim 	set commentstring=\"\ %s
+let g:ctrlp_extensions = ['tag', 'buffertag', 'line', 'undo']
+
+nmap <C-p>t :CtrlPTag<CR>
+
+let maplocalleader = ','
+
+"sets filetypes for vim-commentary (now using tcomment...)
+"autocmd FileType python set commentstring=#\ %s
+"autocmd FileType html 	set commentstring=<!--\ %s\ -->
+"autocmd FileType lua 	set commentstring=--[[\ %s\ --]]
+"autocmd FileType vim 	set commentstring=\"\ %s
 
 "nicer bindings for delimitMate
 "imap <Nul> <Plug>delimitMateS-Tab		
@@ -101,14 +132,12 @@ autocmd FileType vim 	set commentstring=\"\ %s
 
 """"INPUT""""
 """""""""""""
-let mapleader = ' '
 nmap <C-H> <C-W>h
 nmap <C-J> <C-W>j
 nmap <C-K> <C-W>k
 nmap <C-L> <C-W>l
 
-nmap <Leader>t <C-]>
-nmap <Leader>T <C-T>
+nmap <C-[> <C-T>
 
 "clipboard mode, works in gvim, doesn't work in some vterms?
 nmap <C-Q>	"+
@@ -171,7 +200,7 @@ endfunction
 
 """"OTHER""""
 """""""""""""
-command Bc call s:bufferClose()
+command Bd call s:bufferClose()
 function s:bufferClose()
 	let l:buf = bufnr("%")
 	bprevious!
@@ -180,4 +209,6 @@ endfunction
 
 
 command Cdf cd %:p:h
+
+command Vimrc e $MYVIMRC
 
