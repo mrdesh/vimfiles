@@ -47,7 +47,9 @@ Bundle 'aaronbieber/quicktask'
 "Bundle 'vim-scripts/vimprj'
 
 " Auto text
-"Bundle 'vim-scripts/UltiSnips'
+if !has('win32')
+	Bundle 'vim-scripts/UltiSnips'
+endif
 Bundle 'tpope/vim-surround'
 Bundle 'godlygeek/tabular' 								
 Bundle 'Raimondi/delimitMate'
