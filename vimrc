@@ -8,6 +8,8 @@ else
 	let $MYVIMFILES = $HOME . "/.vim"
 endif
 
+source $MYVIMFILES/vimrc.local
+
 " OPTIONS {{{
 
 helptags $MYVIMFILES/doc
@@ -41,7 +43,6 @@ set wildmenu
 set foldmethod=marker
 "set iskeyword-=_ "ok this messes up tag searching
 syntax on
-
 
 " }}}
 " VUNDLE {{{
@@ -102,36 +103,12 @@ Bundle 'vim-scripts/DfrankUtil'
 
 au BufNewFile,BufRead *.md set filetype=markdown
 
-let g:NERDTreeChDirMode = 1
+let g:NERDTreeChDirMode = 2
 let g:NERDTreeShowBookmarks = 1
 
 let g:ctrlp_extensions = [ 'tag', 'buffertag' ]
 
 let g:UltiSnipsEditSplit = 'vertical'
-
-let g:vimwiki_list = [{	
-\			'maxhi': 0,
-\ 		'css_name': 'style.css',
-\ 		'auto_export': 0,
-\ 		'diary_index': 'diary',
-\ 		'nested_syntaxes': {},
-\ 		'diary_sort': 'desc',
-\ 		'path': '~/Dropbox/vimwiki/wiki',
-\ 		'path_html': '~/Dropbox/vimwiki/html',
-\ 		'template_path': '~/Dropbox/vimwiki/templates',
-\ 		'template_ext': '.html',
-\ 		'template_default': 'default',
-\ 		'diary_link_fmt': '%Y-%m-%d',
-\ 		'syntax': 'default',
-\ 		'custom_wiki2html': '',
-\ 		'index': 'index',
-\ 		'diary_header': 'Diary',
-\ 		'ext': '.wiki',
-\ 		'temp': 0,
-\ 		'list_margin': -1,
-\ 		'diary_rel_path': 'diary/'
-\
-\}]
 
 " }}}
 " MAPPINGS {{{
@@ -170,6 +147,8 @@ command! Ntc NERDTreeClose
 command! Tb TagbarOpen
 command! Tbc TagbarClose
 
+command! Vimwiki VimwikiIndex
+
 command! -nargs=1 UltiSnips UltiSnipsEdit <args>
 command! -nargs=1 Us UltiSnips <args>
 
@@ -180,6 +159,7 @@ command! -nargs=1 Pl Plugin<args>
 " VIM GIT MANAGEMENT {{{
 
 command! Vimrc :vs $MYVIMRC
+command! VimrcLocal :vs $MYVIMFILES/vimrc.local
 command! VimrcSource :source $MYVIMRC
 
 command! VimSettingsPush call s:vimSettingsPush()
