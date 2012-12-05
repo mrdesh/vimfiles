@@ -1,80 +1,15 @@
-""""IDEAS""""
-"""""""""""""
-"-command to paste text as a new line (using the autoindent rules)
-"	or maybe something to create autoindent rules on the fly?
-"-command to go to next line and enter append mode at the end
-"-command to go into "virtual edit mode"; adjusts the "virtualedit" option
-"-command to source selection (so i can re-source sections of .vimrc)
-"-command to select line, minus trailing whitespace
+" TIP: To re-source the vimrc make sure to use bangs for functions and
+" commands.
 
 
-""""GENERAL""""
-"""""""""""""""
 if has("win32")
 	let $MYVIMFILES = $USERPROFILE . "\\vimfiles"
 else
 	let $MYVIMFILES = $HOME . "/.vim"
 endif
 
-""""VUNDLE""""
-""""""""""""""
-set nocompatible
-filetype off
+" OPTIONS {{{
 
-set rtp+=$MYVIMFILES/vundle
-helptags $MYVIMFILES/vundle/doc
-call vundle#rc($MYVIMFILES . "/bundle")
-
-" Tools
-Bundle 'fholgado/minibufexpl.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'majutsushi/tagbar'
-Bundle 'Lokaltog/vim-powerline'
-"Bundle 'vim-scripts/FuzzyFinder'
-Bundle 'kien/ctrlp.vim'
-"Bundle 'Shougo/neocomplcache'
-"Bundle 'vim-scripts/sessionman.vim'
-"Bundle 'fmoralesc/vim-pad'
-"Bundle 'kshenoy/vim-signature'
-Bundle 'scrooloose/syntastic'
-"Bundle 'gordyt/rope-vim'
-
-" Project management / GTD
-"Bundle 'tmallen/proj-vim'
-Bundle 'aaronbieber/quicktask'
-"Bundle 'vim-scripts/vimwiki'
-"Bundle 'jceb/vim-orgmode'
-"Bundle 'vim-scripts/vimprj'
-
-" Auto text
-if !has('win32')
-	Bundle 'vim-scripts/UltiSnips'
-endif
-Bundle 'tpope/vim-surround'
-Bundle 'godlygeek/tabular' 								
-Bundle 'Raimondi/delimitMate'
-"Bundle 'vim-scripts/ProtoDef'
-Bundle 'michaeljsmith/vim-indent-object' 
-"Bundle 'ervandu/supertab' 
-Bundle 'tomtom/tcomment_vim'
-
-" Markup/HTML/CSS
-Bundle 'mattn/zencoding-vim'
-Bundle 'vim-scripts/closetag.vim'
-
-" Colors
-Bundle 'altercation/vim-colors-solarized'
-
-" Dependencies
-Bundle 'vim-scripts/L9'
-Bundle 'vim-scripts/DfrankUtil'
-
-filetype plugin indent on
-
-
-""""VIM""""
-"""""""""""
-set rtp+=$MYVIMFILES/user
 helptags $MYVIMFILES/doc
 
 set nocompatible
@@ -98,46 +33,189 @@ set encoding=utf-8
 filetype plugin indent on
 set hlsearch
 set incsearch
+set gdefault
 set cf
 set mouse=a
 set mousehide
+set wildmenu
+set foldmethod=marker
 "set iskeyword-=_ "ok this messes up tag searching
 syntax on
 
 
-""""PLUGIN""""
-""""""""""""""
-let g:NERDTreeChDirMode = 2
-let g:NERDTreeWinSize = 22
+" }}}
+" VUNDLE {{{
 
-let g:ctrlp_extensions = ['tag', 'buffertag', 'line', 'undo']
+set rtp+=$MYVIMFILES/vundle
+helptags $MYVIMFILES/vundle/doc
+call vundle#rc($MYVIMFILES . "/bundle")
 
-nmap <C-p>t :CtrlPTag<CR>
+" Just for the record, check out Kana's github. He's a swiss army knife.
+" Specifically, his textobj stuff.
 
-let maplocalleader = ','
+Bundle 'fholgado/minibufexpl.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'majutsushi/tagbar'
+Bundle 'Lokaltog/vim-powerline'
+"Bundle 'vim-scripts/FuzzyFinder'
+Bundle 'kien/ctrlp.vim'
+"Bundle 'Shougo/neocomplcache'
+"Bundle 'vim-scripts/sessionman.vim'
+"Bundle 'fmoralesc/vim-pad'
+"Bundle 'kshenoy/vim-signature'
+Bundle 'scrooloose/syntastic'
+"Bundle 'gordyt/rope-vim'
+"Bundle 'spolu/dwm.vim'
+"Bundle 'benmills/vimux'
+"Bundle 'vim-scripts/DrawIt'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'danro/rename.vim'
+Bundle 'tpope/vim-fugitive'
+"Bundle 'tmallen/proj-vim'
+"Bundle 'aaronbieber/quicktask'
+Bundle 'vim-scripts/vimwiki'
+"Bundle 'jceb/vim-orgmode'
+"Bundle 'vim-scripts/vimprj'
+if !has('win32')
+	Bundle 'vim-scripts/UltiSnips'
+endif
+Bundle 'tpope/vim-surround'
+Bundle 'godlygeek/tabular' 								
+Bundle 'Raimondi/delimitMate'
+"Bundle 'vim-scripts/ProtoDef'
+Bundle 'michaeljsmith/vim-indent-object' 
+"Bundle 'ervandu/supertab' 
+Bundle 'tomtom/tcomment_vim'
+Bundle 'mattn/zencoding-vim'
+Bundle 'vim-scripts/closetag.vim'
+Bundle 'sukima/xmledit'
 
-""""INPUT""""
-"""""""""""""
+"" Colors
+"Bundle 'altercation/vim-colors-solarized'
+
+"" Dependencies
+Bundle 'vim-scripts/L9'
+Bundle 'vim-scripts/DfrankUtil'
+
+" }}}
+" SETTINGS {{{
+
+au BufNewFile,BufRead *.md set filetype=markdown
+
+let g:NERDTreeChDirMode = 1
+let g:NERDTreeShowBookmarks = 1
+
+let g:ctrlp_extensions = [ 'tag', 'buffertag' ]
+
+let g:UltiSnipsEditSplit = 'vertical'
+
+let g:vimwiki_list = [{	
+\			'maxhi': 0,
+\ 		'css_name': 'style.css',
+\ 		'auto_export': 0,
+\ 		'diary_index': 'diary',
+\ 		'nested_syntaxes': {},
+\ 		'diary_sort': 'desc',
+\ 		'path': '~/Dropbox/vimwiki/wiki',
+\ 		'path_html': '~/Dropbox/vimwiki/html',
+\ 		'template_path': '~/Dropbox/vimwiki/templates',
+\ 		'template_ext': '.html',
+\ 		'template_default': 'default',
+\ 		'diary_link_fmt': '%Y-%m-%d',
+\ 		'syntax': 'default',
+\ 		'custom_wiki2html': '',
+\ 		'index': 'index',
+\ 		'diary_header': 'Diary',
+\ 		'ext': '.wiki',
+\ 		'temp': 0,
+\ 		'list_margin': -1,
+\ 		'diary_rel_path': 'diary/'
+\
+\}]
+
+" }}}
+" MAPPINGS {{{
+
 nmap <C-H> <C-W>h
 nmap <C-J> <C-W>j
 nmap <C-K> <C-W>k
 nmap <C-L> <C-W>l
 
+let mapleader = ","
+let maplocalleader = "\\"
+
+noremap <Leader><Space> :noh<CR>
+
+noremap H ^
+noremap L g_
+
 "Nope. C-[ is equivalent to Esc
 "nmap <C-[> <C-T>
 
-""""APPEARANCE""""
-""""""""""""""""""
-colorscheme zenburn
+" }}}
+" SHORTCUTS {{{
 
-""""OTHER""""
-"""""""""""""
-command Bd call s:bufferClose()
-function s:bufferClose()
+command! Bd call s:bufferClose()
+function! s:bufferClose()
 	let l:buf = bufnr("%")
 	bprevious!
 	exe 'bdelete!' . l:buf
 endfunction
 
-command Cdf cd %:p:h
+command! Cdf cd %:p:h
+
+command! Nt NERDTree
+command! Ntc NERDTreeClose
+
+command! Tb TagbarOpen
+command! Tbc TagbarClose
+
+command! -nargs=1 UltiSnips UltiSnipsEdit <args>
+command! -nargs=1 Us UltiSnips <args>
+
+command! -nargs=1 Plugin vs $MYVIMFILES/plugin/<args>
+command! -nargs=1 Pl Plugin<args>
+
+" }}}
+" VIM GIT MANAGEMENT {{{
+
+command! Vimrc :vs $MYVIMRC
+command! VimrcSource :source $MYVIMRC
+
+command! VimSettingsPush call s:vimSettingsPush()
+function! s:vimSettingsPush()
+	let curdir = getcwd()
+	cd $MYVIMFILES
+		
+	!git push
+
+	exe 'cd ' . curdir
+endfunction
+
+command! VimSettingsPull call s:vimSettingsPull()
+function! s:vimSettingsPull()
+	let curdir = getcwd()
+	cd $MYVIMFILES
+		
+	!git pull
+
+	exe 'cd ' . curdir
+endfunction
+
+command! VimSettingsFetch call s:vimSettingsFetch()
+function! s:vimSettingsFetch()
+	let curdir = getcwd()
+	cd $MYVIMFILES
+		
+	!git fetch
+
+	exe 'cd ' . curdir
+endfunction
+
+" }}}
+" APPEARANCE {{{
+
+colorscheme zenburn
+
+" }}}
 
