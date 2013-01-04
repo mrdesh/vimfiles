@@ -1,5 +1,7 @@
 
-let g:vimwiki_list = [{	
+let g:user_homepage = "~/Dropbox/homepages/start.html"
+
+call add(g:vimwiki_list, {
 \			'maxhi': 0,
 \ 		'css_name': 'style.css',
 \ 		'auto_export': 0,
@@ -21,5 +23,6 @@ let g:vimwiki_list = [{
 \ 		'list_margin': -1,
 \ 		'diary_rel_path': 'diary/'
 \
-\}]
+\})
 
+let g:utl_cfg_hdl_scm_http = 'silent !firefox "%u"'
