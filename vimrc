@@ -52,12 +52,16 @@ syntax on
 " }}}
 " VUNDLE {{{
 "
-set rtp+=$MYVIMFILES/vundle
-helptags $MYVIMFILES/vundle/doc
+set rtp+=$MYVIMFILES/bundle/vundle
+helptags $MYVIMFILES/bundle/vundle/doc
 call vundle#rc($MYVIMFILES . "/bundle")
+Bundle 'gmarik/vundle.git'
 
 " DrChip: http://www.drchip.org/astronaut/vim/index.html
 " Kana:   https://github.com/kana
+
+" my general, scratch scripts
+Bundle 'file://' . $HOME . '/Dropbox/git/myvimscripts'
 
 Bundle 'fholgado/minibufexpl.vim'
 "Bundle 'vim-scripts/TabBar'
@@ -134,6 +138,7 @@ augroup END
 
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeShowBookmarks = 1
+let g:NERDTreeShowHidden = 1
 
 let g:ctrlp_extensions = [ 'tag', 'buffertag', 'mixed' ]
 
@@ -142,6 +147,8 @@ let g:UltiSnipsEditSplit = 'vertical'
 let g:ProjFileBrowser = 'off'
 
 let g:miniBufExplShowBufNumbers = 0
+
+let g:yankring_history_file = '.yankring_history'
 
 "this could be cool, mess with this
 "set kp=chromium\ http\://www.google.com/search\?q\=
@@ -178,7 +185,7 @@ function! s:bufferClose()
 	exe 'bdelete!' . l:buf
 endfunction
 
-command! CDfile cd %:p:h
+command! Cdf cd %:p:h
 
 command! Files NERDTreeToggle
 
